@@ -1,13 +1,23 @@
 pipeline{
 
-    agent any
+    agent {
+        label 'NODEJS'
+    }
 
     stages {
 
-        stage('Maven Package') {
+        stage('Compile Code') {
             steps {
                 sh '''
-                mvn clean package
+                mvn compile
+            '''
+            }
+        }
+
+        stage('Make Package') {
+            steps {
+                sh '''
+                mvn package
             '''
             }
         }
