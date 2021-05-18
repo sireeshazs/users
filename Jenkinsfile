@@ -4,10 +4,10 @@ pipeline{
 
     stages {
 
-        stage('Download Dependencies') {
+        stage('Maven Package') {
             steps {
                 sh '''
-             install maven
+                mvn package
             '''
             }
         }
