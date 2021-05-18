@@ -7,7 +7,7 @@ pipeline{
         stage('Maven Package') {
             steps {
                 sh '''
-                mvn package
+                mvn clean package
             '''
             }
         }
