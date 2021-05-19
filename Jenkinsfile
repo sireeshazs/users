@@ -22,7 +22,7 @@ pipeline{
         stage('prepare Artifacts') {
             steps {
                 sh '''
-                zip -r ../users.zip *
+                zip -r users.zip *
             '''
             }
 
