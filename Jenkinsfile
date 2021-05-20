@@ -1,38 +1,8 @@
-pipeline{
+@Library('todo') _
 
-    agent any
-
-    stages {
-
-        stage('Compile Code') {
-            steps {
-                sh '''
-                mvn compile
-            '''
-            }
-        }
-
-        stage('Make Package') {
-            steps {
-                sh '''
-                mvn package
-            '''
-            }
-        }
-        stage('prepare Artifacts') {
-            steps {
-                sh '''
-                zip -r users.zip *
-            '''
-            }
-
-        }
-        stage('upload Artifacts') {
-            steps {
-                sh '''
-           curl -f -v -u admin:admin --upload-file users.zip http://172.31.11.104:8081/repository/users/users.zip
-        '''
-            }
-        }
-    }
-}
+todo (
+        COMPONENT             : 'USERS',
+        PROJECT_NAME          : "TODOAPP",
+        SLAVE_LABEL           : "MASTER",
+        SKIP_NEXUS_UPLOAD     : false,
+        APP_TYPE              : "NGINX"
